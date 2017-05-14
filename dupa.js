@@ -33,8 +33,7 @@ async function getUser() {
 
 let root = {
     dupa: ({id}) => {
-        const user = getUser() + id;
-        return user;
+        return getUser() + id;
     },
 };
 const query = '{ dupa(id: 12)}';
