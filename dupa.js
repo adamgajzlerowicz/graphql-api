@@ -21,7 +21,7 @@ connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
     console.log('The solution is: ', results[0].solution);
 });
 
-async function asyncFunction() {
+async function getUser() {
     await new Promise((res)=>{
         setTimeout(()=>{
             console.log(1);
@@ -30,11 +30,11 @@ async function asyncFunction() {
     });
     console.log('2');
 }
-asyncFunction();
 
 let root = {
     dupa: ({id}) => {
-        return 'dupa ' + id;
+        const user = getUser() + id;
+        return user;
     },
 };
 const query = '{ dupa(id: 12)}';
