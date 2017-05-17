@@ -1,6 +1,10 @@
 import test from 'ava';
-import graphql from './dupa';
+import {lambda} from './dupa';
 
 test('bar',  t => {
+    lambda();
+    return lambda().then(result => {
+        t.is(result, 'unicorn');
+    })
     t.is(true, true);
 });
