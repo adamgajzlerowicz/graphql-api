@@ -37,9 +37,9 @@ const schema = new GraphQLSchema({
 });
 
 
-const query = '{ user(id: "1"){id age}}';
-const dupa = graphql(schema, query, root).then((response) => {
+const query = '{ user(id: "2"){firstName}}';
+const querrier = graphql(schema, query, root).then((response) => {
     console.log(response);
 });
 
-export {dupa};
+export {querrier};

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "ava",
-    "ava": "ava -w dupa.spec.js"
+    "ava": "ava -w dupa.spec.js",
+    "json:server" : "json-server --watch db.json"
   },
   "ava": {
     "require": [
@@ -21,6 +22,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
     "graphql": "^0.9.6",
+    "json-server": "^0.10.1",
     "mysql": "^2.13.0"
   },
   "devDependencies": {
