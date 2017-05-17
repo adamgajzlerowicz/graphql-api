@@ -1,45 +1,45 @@
-import {graphql, buildSchema} from 'graphql';
-import mysql from 'mysql';
+import {graphql, GraphQLSchema, GraphQLInt, GraphQLString, GraphQLObjectType} from 'graphql';
 
-const connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '123',
-    database : 'crm'
-});
-connection.connect();
+const users = [
+    {id: '1', firstName: 'bill', age: 41},
+    {id: '2', firstName: 'samantha', age: 21},
+];
 
-// Construct a schema, using GraphQL schema language
-let schema = buildSchema(`
-  type Query {
-    dupa(id: Int): String
-  }
-`);
-
-connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-    if (error) throw error;
-    console.log('The solution is: ', results[0].solution);
+const UserType = new GraphQLObjectType({
+    name: 'User',
+    fields: {
+        id: {type: GraphQLString},
+        firstName: {type: GraphQLString},
+        age: {type: GraphQLInt}
+    }
 });
 
-async function getUser() {
-    await new Promise((res)=>{
-        setTimeout(()=>{
-            console.log(1);
-            res();
-        }, 0);
-    });
-    console.log('2');
-}
+const RootQuery = new GraphQLObjectType({
+    name: 'RootQueryType',
+    fields: {
+        user: {
+            type: UserType,
+            args: {
+                id: {
+                    type: GraphQLString
+                }
+            },
+            resolve(parentValue, args){
+                return users.find(el => el.id === args.id)
+            }
+        }
+    }
+});
 
-let root = {
-    dupa: ({id}) => {
-        return getUser() + id;
-    },
-};
-const query = '{ dupa(id: 12)}';
+
+const schema = new GraphQLSchema({
+    query: RootQuery
+});
+
+
+const query = '{ user(id: "1"){id age}}';
 const dupa = graphql(schema, query, root).then((response) => {
     console.log(response);
 });
-
 
 export {dupa};
