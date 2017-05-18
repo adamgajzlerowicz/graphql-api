@@ -2,13 +2,33 @@
   "users": [
     {
       "id": "1",
-      "firstName": "bill",
-      "age": 41
+      "firstName": "Bill",
+      "age": 41,
+      "companyId": "1"
     },
     {
       "id": "2",
-      "firstName": "samantha",
-      "age": 21
+      "firstName": "Samantha",
+      "age": 21,
+      "companyId": "1"
+    },
+    {
+      "id": "3",
+      "firstName": "Joseph",
+      "age": 5,
+      "companyId": "1"
+    }
+  ],
+  "companies": [
+    {
+      "id": "1",
+      "name": "bill",
+      "description": "Terrible company"
+    },
+    {
+      "id": "2",
+      "name": "bill",
+      "description": "Excellent company"
     }
   ]
 }
