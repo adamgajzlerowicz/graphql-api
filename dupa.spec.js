@@ -1,10 +1,12 @@
 import test from 'ava';
-import {lambda} from './dupa';
+import {schema} from './dupa';
+import {graphql} from 'graphql';
 
-test('bar',  t => {
-    lambda();
-    return lambda().then(result => {
-        t.is(result, 'unicorn');
-    })
-    t.is(true, true);
+test.cb('bar',  t => {
+    const query = '{ user(id: "1"){firstName}}';
+    graphql(schema, query, root).then((response) => {
+        console.log(response);
+        t.truthy(response);
+        t.end();
+    });
 });
