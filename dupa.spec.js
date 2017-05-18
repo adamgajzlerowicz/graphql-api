@@ -2,7 +2,7 @@ import test from 'ava';
 import {schema} from './dupa';
 import {graphql} from 'graphql';
 
-test.cb('bar',  t => {
+test.cb('Test graphql',  t => {
     const query = '{ user(id: "1"){firstName}}';
     graphql(schema, query, root).then((response) => {
         console.log(response);
